@@ -1,0 +1,29 @@
+@keyframes MageRunning {
+    13% {
+        background-image: url('../sprites/Run/run1.png');
+    }
+
+    26% {
+        background-image: url('../sprites/Run/run2.png');
+    }
+
+    39% {
+        background-image: url('../sprites/Run/run3.png');
+    }
+
+    52% {
+        background-image: url('../sprites/Run/run4.png');
+    }
+
+    65% {
+        background-image: url('../sprites/Run/run5.png');
+    }
+
+    78% {
+        background-image: url('../sprites/Run/run6.png');
+    }
+
+    91% {
+        background-image: url('../sprites/Run/run7.png');
+    }
+}
