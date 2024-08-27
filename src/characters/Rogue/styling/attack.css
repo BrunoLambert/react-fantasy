@@ -1,0 +1,33 @@
+@keyframes RogueAttack {
+    0% {
+        background-image: url('../sprites/Attack/Attack1.png');
+    }
+
+    15% {
+        background-image: url('../sprites/Attack/Attack2.png');
+    }
+
+    30% {
+        background-image: url('../sprites/Attack/Attack3.png');
+    }
+
+    45% {
+        background-image: url('../sprites/Attack/Attack4.png');
+    }
+
+    60% {
+        background-image: url('../sprites/Attack/Attack5.png');
+    }
+
+    75% {
+        background-image: url('../sprites/Attack/Attack6.png');
+    }
+
+    90% {
+        background-image: url('../sprites/Attack/Attack7.png');
+    }
+
+    100% {
+        background-image: url('../sprites/rogue.png');
+    }
+}

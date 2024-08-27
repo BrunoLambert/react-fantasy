@@ -1,0 +1,25 @@
+@keyframes KnightWalking {
+    0% {
+        background-image: url('../sprites/Walk/walk1.png');
+    }
+
+    20% {
+        background-image: url('../sprites/Walk/walk2.png');
+    }
+
+    40% {
+        background-image: url('../sprites/Walk/walk3.png');
+    }
+
+    60% {
+        background-image: url('../sprites/Walk/walk4.png');
+    }
+
+    80% {
+        background-image: url('../sprites/Walk/walk5.png');
+    }
+
+    100% {
+        background-image: url('../sprites/Walk/walk6.png');
+    }
+}

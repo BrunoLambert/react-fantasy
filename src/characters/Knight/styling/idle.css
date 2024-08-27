@@ -1,0 +1,54 @@
+@keyframes KnightIdle {
+    3% {
+        background-image: url('../sprites/Idle/idle1.png');
+    }
+
+    6% {
+        background-image: url('../sprites/Idle/idle2.png');
+    }
+
+    9% {
+        background-image: url('../sprites/Idle/idle3.png');
+    }
+
+    12% {
+        background-image: url('../sprites/Idle/idle4.png');
+    }
+
+    15% {
+        background-image: url('../sprites/Idle/idle5.png');
+    }
+
+    18% {
+        background-image: url('../sprites/Idle/idle6.png');
+    }
+
+    21% {
+        background-image: url('../sprites/Idle/idle7.png');
+    }
+
+    24% {
+        background-image: url('../sprites/Idle/idle8.png');
+    }
+
+    27% {
+        background-image: url('../sprites/Idle/idle9.png');
+    }
+
+    30% {
+        background-image: url('../sprites/Idle/idle10.png');
+    }
+
+    33% {
+        background-image: url('../sprites/Idle/idle11.png');
+    }
+
+    36% {
+        background-image: url('../sprites/Idle/idle12.png');
+    }
+
+    50%,
+    100% {
+        background-image: url('../sprites/knight.png');
+    }
+}

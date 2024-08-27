@@ -3,9 +3,9 @@
 @use './attack.css';
 @use './running.css';
 
-#mage {
-    background-color: rgb(128, 32, 0);
-    background-image: url('../sprites/mage.png');
+#rogue {
+    background-color: darkgreen;
+    background-image: url('../sprites/rogue.png');
     height: 128px;
     width: 128px;
     background-position: bottom center;
@@ -13,7 +13,7 @@
 
     &.idle {
         animation-duration: 6s;
-        animation-name: MageIdle;
+        animation-name: RogueIdle;
         animation-iteration-count: infinite;
         animation-direction: normal;
         animation-delay: 5000ms;
@@ -22,14 +22,14 @@
 
     &.walking {
         animation-duration: 1s;
-        animation-name: MageWalking;
+        animation-name: RogueWalking;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }
 
     &.running {
         animation-duration: 1s;
-        animation-name: MageRunning;
+        animation-name: RogueRunning;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }
@@ -42,7 +42,7 @@
 
     &.attacking {
         animation-duration: 0.5s;
-        animation-name: MageAttack;
+        animation-name: RogueAttack;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }

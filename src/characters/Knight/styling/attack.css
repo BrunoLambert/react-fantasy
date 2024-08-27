@@ -1,0 +1,21 @@
+@keyframes KnightAttack {
+    0% {
+        background-image: url('../sprites/Attack/attack0.png');
+    }
+
+    25% {
+        background-image: url('../sprites/Attack/attack1.png');
+    }
+
+    50% {
+        background-image: url('../sprites/Attack/attack2.png');
+    }
+
+    75% {
+        background-image: url('../sprites/Attack/attack3.png');
+    }
+
+    100% {
+        background-image: url('../sprites/Attack/attack4.png');
+    }
+}

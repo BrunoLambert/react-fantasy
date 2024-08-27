@@ -1,0 +1,33 @@
+@keyframes RogueRunning {
+    12% {
+        background-image: url('../sprites/Run/run1.png');
+    }
+
+    24% {
+        background-image: url('../sprites/Run/run2.png');
+    }
+
+    36% {
+        background-image: url('../sprites/Run/run3.png');
+    }
+
+    48% {
+        background-image: url('../sprites/Run/run4.png');
+    }
+
+    60% {
+        background-image: url('../sprites/Run/run5.png');
+    }
+
+    72% {
+        background-image: url('../sprites/Run/run6.png');
+    }
+
+    84% {
+        background-image: url('../sprites/Run/run7.png');
+    }
+
+    96% {
+        background-image: url('../sprites/Run/run8.png');
+    }
+}

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import './App.css';
 import MageCharacter from './characters/Mage';
+import KnightCharacter from './characters/Knight';
 import { CharacterState } from './types/Character';
+import RogueCharacter from './characters/Rogue';
 
 interface AppProps { }
 
@@ -58,6 +60,8 @@ const App: React.FunctionComponent<AppProps> = () => {
     <div className="App">
       <div id="character" style={{ left: characterPosition, position: 'absolute' }}>
         <MageCharacter state={characterState} />
+        <KnightCharacter state={characterState} />
+        <RogueCharacter state={characterState} />
 
         <div style={{ margin: '20px' }}>
           <p>

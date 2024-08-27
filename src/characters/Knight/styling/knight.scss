@@ -3,17 +3,17 @@
 @use './attack.css';
 @use './running.css';
 
-#mage {
-    background-color: rgb(128, 32, 0);
-    background-image: url('../sprites/mage.png');
+#knight {
+    background-color: rgb(128, 128, 0);
+    background-image: url('../sprites/knight.png');
     height: 128px;
     width: 128px;
     background-position: bottom center;
     background-size: 150%;
 
     &.idle {
-        animation-duration: 6s;
-        animation-name: MageIdle;
+        animation-duration: 3s;
+        animation-name: KnightIdle;
         animation-iteration-count: infinite;
         animation-direction: normal;
         animation-delay: 5000ms;
@@ -22,14 +22,14 @@
 
     &.walking {
         animation-duration: 1s;
-        animation-name: MageWalking;
+        animation-name: KnightWalking;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }
 
     &.running {
         animation-duration: 1s;
-        animation-name: MageRunning;
+        animation-name: KnightRunning;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }
@@ -41,8 +41,8 @@
     }
 
     &.attacking {
-        animation-duration: 0.5s;
-        animation-name: MageAttack;
+        animation-duration: 0.3s;
+        animation-name: KnightAttack;
         animation-iteration-count: infinite;
         animation-direction: alternate-reverse;
     }
