@@ -4,10 +4,12 @@ import MageCharacter from './characters/Mage';
 import KnightCharacter from './characters/Knight';
 import { CharacterState } from './types/Character';
 import RogueCharacter from './characters/Rogue';
+import CharacterSelection from './components/Selection/CharacterSelection';
 
 interface AppProps { }
 
 const App: React.FunctionComponent<AppProps> = () => {
+  const [selectedCharacter, setSelectedCharacter] = React.useState<string | null>(null);
   const [characterPosition, setCharacterPosition] = React.useState(0);
   const [characterState, setCharacterState] = React.useState<CharacterState>({
     direction: null,
@@ -15,6 +17,19 @@ const App: React.FunctionComponent<AppProps> = () => {
     running: false,
     attack: false,
   })
+
+  const DisplayCharacter = React.useMemo(() => {
+    switch (selectedCharacter) {
+      case 'mage':
+        return <MageCharacter state={characterState} />
+      case 'knight':
+        return <KnightCharacter state={characterState} />
+      case 'rogue':
+        return <RogueCharacter state={characterState} />
+      default:
+        return (<p>Erro</p>)
+    }
+  }, [selectedCharacter, characterState])
 
   const startWalking = React.useCallback((position = 0) => {
     setTimeout(() => {
@@ -43,7 +58,7 @@ const App: React.FunctionComponent<AppProps> = () => {
       }
     }
 
-    const handleKeyUp = (event) => {
+    const handleKeyUp = () => {
       setCharacterState({ direction: null, attack: false, walking: false, running: characterState.running })
     }
 
@@ -58,26 +73,31 @@ const App: React.FunctionComponent<AppProps> = () => {
 
   return (
     <div className="App">
-      <div id="character" style={{ left: characterPosition, position: 'absolute' }}>
-        <MageCharacter state={characterState} />
-        <KnightCharacter state={characterState} />
-        <RogueCharacter state={characterState} />
+      {selectedCharacter ? (
+        <div id="character" className='p-5'>
 
-        <div style={{ margin: '20px' }}>
-          <p>
-            Movimento de tempo ocioso <b>(5s)</b>
-          </p>
-          <p>
-            Movimento horizontal <b>(setas)</b>
-          </p>
-          <p>
-            Ataque no <b>Z</b>
-          </p>
-          <p>
-            (Shift) Corrida ativado: <b>{characterState.running ? 'Sim' : 'Não'}</b>
-          </p>
+          <h1 className='capitalize mb-5 text-center text-4xl font-bold underline'>{selectedCharacter}</h1>
+
+          <div className='flex justify-center'>{DisplayCharacter}</div>
+
+          <div className='mt-5'>
+            <p>
+              Movimento de tempo ocioso <b>(5s)</b>
+            </p>
+            <p>
+              Movimento horizontal <b>(setas)</b>
+            </p>
+            <p>
+              Ataque no <b>Z</b>
+            </p>
+            <p>
+              (Shift) Corrida ativado: <b>{characterState.running ? 'Sim' : 'Não'}</b>
+            </p>
+          </div>
         </div>
-      </div>
+      ) :
+        <CharacterSelection onSelect={setSelectedCharacter} />
+      }
     </div>
   );
 }

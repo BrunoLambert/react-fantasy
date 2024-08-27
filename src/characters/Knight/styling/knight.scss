@@ -6,44 +6,25 @@
 #knight {
     background-color: rgb(128, 128, 0);
     background-image: url('../sprites/knight.png');
-    height: 128px;
-    width: 128px;
-    background-position: bottom center;
-    background-size: 150%;
+
+    &.display:hover {
+        animation-name: KnightWalking;
+    }
 
     &.idle {
-        animation-duration: 3s;
+        animation-duration: 3s !important;
         animation-name: KnightIdle;
-        animation-iteration-count: infinite;
-        animation-direction: normal;
-        animation-delay: 5000ms;
-        animation-play-state: running;
     }
 
     &.walking {
-        animation-duration: 1s;
         animation-name: KnightWalking;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
     }
 
     &.running {
-        animation-duration: 1s;
         animation-name: KnightRunning;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
-    }
-
-    &.left {
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        background-position: -50% bottom;
     }
 
     &.attacking {
-        animation-duration: 0.3s;
         animation-name: KnightAttack;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
     }
 }

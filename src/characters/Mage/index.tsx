@@ -1,27 +1,13 @@
 import * as React from 'react';
 import './styling/mage.scss'
-import { CharacterState } from '../../types/Character';
+import '../shared/styles.scss';
+import { CharacterComponentProps } from '../../types/Character';
+import { generateCharacterClass } from '../shared/functions';
 
-interface MageCharacterProps {
-    state: CharacterState
-}
-
-const MageCharacter: React.FunctionComponent<MageCharacterProps> = ({ state }) => {
+const MageCharacter: React.FunctionComponent<CharacterComponentProps> = ({ state, onlyDisplay }) => {
     const characterClass = React.useMemo(() => {
-        let charClass = [state.direction]
-
-        if (state.attack) {
-            charClass.push('attacking')
-        } else if (state.running && state.direction) {
-            charClass.push('running')
-        } else if (state.walking) {
-            charClass.push('walking')
-        } else {
-            charClass.push('idle')
-        }
-
-        return charClass.join(' ');
-    }, [state])
+        return generateCharacterClass(state, onlyDisplay);
+    }, [state, onlyDisplay])
 
     return (
         <div id="mage" className={characterClass} />

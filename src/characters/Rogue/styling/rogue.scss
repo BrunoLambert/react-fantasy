@@ -6,44 +6,24 @@
 #rogue {
     background-color: darkgreen;
     background-image: url('../sprites/rogue.png');
-    height: 128px;
-    width: 128px;
-    background-position: bottom center;
-    background-size: 150%;
+
+    &.display:hover {
+        animation-name: RogueWalking;
+    }
 
     &.idle {
-        animation-duration: 6s;
         animation-name: RogueIdle;
-        animation-iteration-count: infinite;
-        animation-direction: normal;
-        animation-delay: 5000ms;
-        animation-play-state: running;
     }
 
     &.walking {
-        animation-duration: 1s;
         animation-name: RogueWalking;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
     }
 
     &.running {
-        animation-duration: 1s;
         animation-name: RogueRunning;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
-    }
-
-    &.left {
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
-        background-position: -50% bottom;
     }
 
     &.attacking {
-        animation-duration: 0.5s;
         animation-name: RogueAttack;
-        animation-iteration-count: infinite;
-        animation-direction: alternate-reverse;
     }
 }
