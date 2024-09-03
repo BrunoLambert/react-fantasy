@@ -1,8 +1,9 @@
 #mage, #knight, #rogue {
     height: 128px;
     width: 128px;
-    background-position: bottom center;
-    background-size: 150%;
+    background-position: 30% 100%;
+    background-size: 125%;
+    background-repeat: no-repeat;
 
     &.display {
         width: 300px;

@@ -1,65 +1,68 @@
 import * as React from 'react';
 import './App.css';
-import MageCharacter from './characters/Mage';
-import KnightCharacter from './characters/Knight';
-import { CharacterState } from './types/Character';
-import RogueCharacter from './characters/Rogue';
+import { CharacterStateType, CharacterType, ChracterSpeed, generateEmptyCharacterState } from './types/Character';
 import CharacterSelection from './components/Selection/CharacterSelection';
+import MainMarket from './components/MarketLobby/Market';
+import { GameContext, GameContextType } from './contexts/GameContext';
 
 interface AppProps { }
 
 const App: React.FunctionComponent<AppProps> = () => {
-  const [selectedCharacter, setSelectedCharacter] = React.useState<string | null>(null);
-  const [characterPosition, setCharacterPosition] = React.useState(0);
-  const [characterState, setCharacterState] = React.useState<CharacterState>({
-    direction: null,
-    walking: false,
-    running: false,
-    attack: false,
-  })
+  const [selectedCharacter, setSelectedCharacter] = React.useState<CharacterType>(null);
+  const [characterState, setCharacterState] = React.useState<CharacterStateType>(generateEmptyCharacterState())
 
-  const DisplayCharacter = React.useMemo(() => {
-    switch (selectedCharacter) {
-      case 'mage':
-        return <MageCharacter state={characterState} />
-      case 'knight':
-        return <KnightCharacter state={characterState} />
-      case 'rogue':
-        return <RogueCharacter state={characterState} />
-      default:
-        return (<p>Erro</p>)
-    }
-  }, [selectedCharacter, characterState])
-
-  const startWalking = React.useCallback((position = 0) => {
-    setTimeout(() => {
-      let nextStep = position + 50
-
-      if (position >= window.outerWidth + 130) {
-        nextStep = 0
-      }
-
-      setCharacterPosition(nextStep);
-      startWalking(nextStep);
-    }, 1000 / 6)
-  }, []);
+  const SpeedValue = React.useMemo(() => {
+    if (characterState.running) return ChracterSpeed.RUNNING
+    else return ChracterSpeed.WALKING
+  }, [characterState.running]);
 
   React.useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyEvent = (event, type: 'up' | 'down') => {
       console.log(event)
-      if (event.key === 'z') {
-        setCharacterState({ ...characterState, attack: true })
-      } else if (event.key === 'ArrowRight') {
-        setCharacterState({ ...characterState, direction: 'right', walking: true })
-      } else if (event.key === 'ArrowLeft') {
-        setCharacterState({ ...characterState, direction: 'left', walking: true })
-      } else if (event.key === 'Shift') {
-        setCharacterState({ ...characterState, running: !characterState.running })
+      const press = type === 'down';
+
+      switch (event.key) {
+        case 'Z':
+        case 'z':
+          setCharacterState({ ...characterState, attack: press });
+          break;
+        case 'ArrowRight':
+          setCharacterState({
+            ...characterState,
+            direction: 'right',
+            walking: press,
+            position: {
+              y: characterState.position.y,
+              x: press ? Math.min(characterState.position.x + SpeedValue, (window.innerWidth - 70)) : characterState.position.x
+            }
+          })
+          break;
+        case 'ArrowLeft':
+          setCharacterState({
+            ...characterState,
+            direction: 'left',
+            walking: press,
+            position: {
+              y: characterState.position.y,
+              x: press ? Math.max(characterState.position.x - SpeedValue, -30) : characterState.position.x
+            }
+          })
+          break;
+        case 'Shift':
+          if (type === 'down') {
+            setCharacterState({ ...characterState, running: !characterState.running })
+          }
+          break;
+        default:
+          break;
       }
     }
 
-    const handleKeyUp = () => {
-      setCharacterState({ direction: null, attack: false, walking: false, running: characterState.running })
+    const handleKeyDown = (event) => {
+      handleKeyEvent(event, 'down')
+    }
+    const handleKeyUp = (event) => {
+      handleKeyEvent(event, 'up')
     }
 
     window.addEventListener('keydown', handleKeyDown)
@@ -69,35 +72,24 @@ const App: React.FunctionComponent<AppProps> = () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
     }
-  }, [characterState]);
+  }, [characterState, SpeedValue]);
+
+  const GameData = React.useMemo<GameContextType>(() => {
+    return {
+      characterType: selectedCharacter,
+      characterState: characterState
+    }
+  }, [characterState, selectedCharacter])
 
   return (
     <div className="App">
-      {selectedCharacter ? (
-        <div id="character" className='p-5'>
-
-          <h1 className='capitalize mb-5 text-center text-4xl font-bold underline'>{selectedCharacter}</h1>
-
-          <div className='flex justify-center'>{DisplayCharacter}</div>
-
-          <div className='mt-5'>
-            <p>
-              Movimento de tempo ocioso <b>(5s)</b>
-            </p>
-            <p>
-              Movimento horizontal <b>(setas)</b>
-            </p>
-            <p>
-              Ataque no <b>Z</b>
-            </p>
-            <p>
-              (Shift) Corrida ativado: <b>{characterState.running ? 'Sim' : 'Não'}</b>
-            </p>
-          </div>
-        </div>
-      ) :
-        <CharacterSelection onSelect={setSelectedCharacter} />
-      }
+      <GameContext.Provider value={GameData}>
+        {selectedCharacter ? (
+          <MainMarket />
+        ) :
+          <CharacterSelection onSelect={setSelectedCharacter} />
+        }
+      </GameContext.Provider>
     </div>
   );
 }

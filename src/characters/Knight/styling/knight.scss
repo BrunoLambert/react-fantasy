@@ -25,6 +25,7 @@
     }
 
     &.attacking {
+        animation-duration: 0.3s;
         animation-name: KnightAttack;
     }
 }
