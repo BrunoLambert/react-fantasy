@@ -1,3 +1,7 @@
+# See the result of this project on Vercel Link:
+
+[React Fantasy - Vercel](https://react-fantasy-mu.vercel.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
